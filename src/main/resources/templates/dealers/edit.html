@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      lang="en"
+      layout:decorate="~{common/usermasterlayout}">
+<head>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/homepage/index.css}"/>
+    <title>Inventory Manager - Edit Dealer</title>
+</head>
+<body>
+<th:block layout:fragment="content">
+    <div style="position: absolute;left: 220px;right: 50px;top: 50px;">
+        <form id="dealerRegForm" method="post" action="/inventory-manager/dealers/edit" th:object="${dealer}">
+            <fieldset>
+                <legend>Edit Dealer: [[${dealer.firstName}]] [[${dealer.lastName}]]</legend>
+
+                <input type="hidden" name="dealerId" th:value="${dealer.dealerId}"/>
+
+                <div class="form-group">
+                    <label>First Name</label>
+                    <span th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}"
+                          class="alert alert-danger"></span>
+                    <input id="firstName" name="firstName" type="text" class="form-control"
+                           th:value="${dealer.firstName}">
+                </div>
+
+                <div class="form-group">
+                    <label for="lastName">Last Name</label>
+                    <span th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}"
+                          class="alert alert-danger"></span>
+                    <input id="lastName" name="lastName" type="text" class="form-control" th:value="${dealer.lastName}">
+                </div>
+
+                <div class="form-group">
+                    <label for="mobile">Phone Number</label>
+                    <span th:if="${#fields.hasErrors('mobile')}" th:errors="*{mobile}"
+                          class="alert alert-danger"></span>
+                    <input id="mobile" name="mobile" type="text" class="form-control" th:value="${dealer.mobile}">
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}"
+                          class="alert alert-danger"></span>
+                    <input id="email" name="email" type="text" class="form-control" th:value="${dealer.email}">
+                </div>
+
+                <div class="form-group">
+                    <label for="contactAddress">Contact Address</label>
+                    <span th:if="${#fields.hasErrors('contactAddress')}" th:errors="*{contactAddress}"
+                          class="alert alert-danger"></span>
+                    <input id="contactAddress" name="contactAddress" type="text" class="form-control"
+                           th:value="${dealer.contactAddress}">
+                </div>
+
+
+                <div class="form-group">
+                    <label for="businessName">Business Name</label>
+                    <input id="businessName" name="businessName" type="text"
+                           class="form-control" th:value="${dealer.businessName}">
+                </div>
+
+
+                <div style="float:right;">
+                    <a href="/inventory-manager/dealers/index" class="btn btn-warning">Cancel</a>&nbsp;&nbsp;&nbsp;
+                    <button id="btnSubmit" type="submit" class="btn btn-success">Save</button>
+                </div>
+            </fieldset>
+        </form>
+    </div>
+</th:block>
+
+<th:block layout:fragment="footer"></th:block>
+</body>
+</html>

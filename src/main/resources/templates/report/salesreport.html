@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      lang="en"
+      layout:decorate="~{common/usermasterlayout}">
+<head>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/homepage/index.css}"/>
+    <title>Inventory Manager - Edit Merchant</title>
+</head>
+<body>
+<th:block layout:fragment="content">
+
+    <div  style="position: absolute;left: 220px;right: 50px;top: 50px; height: 500px; overflow-y: scroll;">
+        Sales Report
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Order Code</th>
+            <th scope="col">Date</th>
+            <th scope="col">Sales Person</th>
+            <th scope="col">Total</th>
+            <th scope="col">Payment Method</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="order, iterStat : ${orders}">
+            <th scope="row" th:text="${iterStat.count}"></th>
+            <td th:text="${order.orderCode}"></td>
+            <td th:text="${order.datePurchased}"></td>
+            <td th:text="${order.salesUserName}"></td>
+            <td th:text="${order.orderTotal}"></td>
+            <td th:text="${order.paymentMethod}"></td>
+        </tr>
+        </tbody>
+    </table>
+    </div>
+</th:block>
+
+
+</body>
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{common/usermasterlayout}">
+<head>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/homepage/index.css}" />
+    <title>Inventory Manager - Edit Product</title>
+    <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js" type="text/javascript"></script>-->
+</head>
+<body>
+<th:block layout:fragment="content">
+    <div style="position: absolute;left: 220px;right: 50px;top: 50px;">
+     <form id="prodRegForm" method="post" action="/inventory-manager/products/edit" th:object="${product}">
+        <fieldset>
+            <legend>Edit Product - [[${product.name}]]</legend>
+            <input type="hidden" name="id" th:value="${product.id}" />
+            <div class="form-group">
+                <label>Product Name</label>
+                <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}"
+                      class="alert alert-danger"></span>
+                <input id="name" name="name" type="text" class="form-control" th:value="${product.name}">
+            </div>
+            <div class="form-group">
+                <label for="costPrice">Cost Price</label>
+                <span th:if="${#fields.hasErrors('costPrice')}" th:errors="*{costPrice}"
+                      class="alert alert-danger"></span>
+                <input id="costPrice" name="costPrice" type="text" class="form-control" th:value="${product.costPrice}">
+            </div>
+            <div class="form-group">
+                <label for="sellingPrice">Selling Price</label>
+                <span th:if="${#fields.hasErrors('sellingPrice')}" th:errors="*{sellingPrice}"
+                      class="alert alert-danger"></span>
+                <input id="sellingPrice" name="sellingPrice" type="text" class="form-control"
+                       th:value="${product.sellingPrice}">
+            </div>
+            <div class="form-group">
+                <label for="quantity">Quantity</label>
+                <span th:if="${#fields.hasErrors('quantity')}" th:errors="*{quantity}"
+                      class="alert alert-danger"></span>
+                <input id="quantity" name="quantity" type="text" class="form-control" th:value="${product.quantity}">
+            </div>
+            <div style="float:right;">
+                <a href="/inventory-manager/products/index" class="btn btn-warning">Cancel</a>&nbsp;&nbsp;&nbsp;
+                <button id="deleteBtn" onclick="deleteProduct(${product.id})"  class="btn btn-danger">Delete</button>&nbsp;&nbsp;&nbsp;
+                <button id="btnSubmit" type="submit" class="btn btn-success">Save</button>
+            </div>
+        </fieldset>
+    </form>
+
+    </div>
+</th:block>
+
+<!--<th:block layout:fragment="footer"></th:block>-->
+</body>
+<!--<script type="text/javascript">-->
+<!--// $(function () {-->
+<!--//     $("#deleteBtn").click(deleteProduct);-->
+    <!--function deleteProduct(id) {-->
+        <!--console.log(id);-->
+    <!--}-->
+<!--// });-->
+<!--</script>-->
+</html>

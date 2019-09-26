@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      lang="en"
+      layout:decorate="~{common/selermasterlayout}">
+<head>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/homepage/index.css}"/>
+    <title>Inventory Manager - Sale</title>
+</head>
+<body>
+<th:block layout:fragment="content">
+    <div style="position: absolute;left: 220px; right: 50px;top: 50px; height: 480px; overflow-y: scroll;">
+        <form id="salesRegForm" method="post" action="/inventory-manager/salespersons/buy"
+              th:object="${buyer}">
+            <fieldset>
+                <legend>Customer Info</legend>
+                <!---->
+              <!--   <input type="hidden" name="salesmanId" th:value="${salesperson.salesmanId}"/>
+                <input type="hidden" name="user.userType" th:value="SALESPERON"/>
+               -->  <!---->
+               <!--  <div class="form-group">
+                    <label>Staff No</label>
+                    <span th:if="${#fields.hasErrors('staffId')}" th:errors="*{staffId}"
+                          class="alert alert-danger"></span>
+                    <input id="staffId" name="staffId" type="text" class="form-control"
+                           th:value="${salesperson.staffId}">
+              </div>  --> 
+                <!---->
+                <input type="hidden" name="id" th:value="${buyer.id}"/>
+                <div class="form-group">
+                    <label for="firstName">First Name</label>
+                    <span th:if="${#fields.hasErrors('firstName')}" th:errors="*{buyer.firstName}"
+                          class="alert alert-danger"></span>
+                    <input id="firstName" name="firstName" type="text" class="form-control"
+                           th:value="${buyer.firstName}">
+                </div>
+                <!---->
+                <div class="form-group">
+                    <label for="lastName">Last Name</label>
+                    <span th:if="${#fields.hasErrors('lastName')}" th:errors="*{buyer.lastName}"
+                          class="alert alert-danger"></span>
+                    <input id="lastName" name="lastName" type="text" class="form-control"
+                           th:value="${buyer.lastName}">
+                </div>
+
+              <!--   <div class="form-group">
+                    <label>Location</label>
+                    <select class="form-control" id="locationId" name="location"  style="height: 40px;" >
+                        <option value="">Select Location</option>
+                        <option th:each="location : ${locations}"
+                                th:value="${location.locationId}"
+                                th:text="${location.locationName}"></option>
+                    </select>
+                </div>
+ -->
+                <!---->
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <span th:if="${#fields.hasErrors('email')}" th:errors="*{buyer.email}"
+                          class="alert alert-danger"></span>
+                    <input id="email" name="email" type="email" class="form-control"
+                           aria-describedby="emailAddressHelp" placeholder="e.g. name@domain.com"
+                           pattern="[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*"
+                           title="Email must be in the format, name@domain.tld" th:value="${buyer.email}">
+                    <small id="emailAddressHelp" class="form-text text-muted">Enter a valid email address; in the format
+                        as
+                        specified.
+                    </small>
+                </div>
+                <!---->
+                <div class="form-group">
+                    <label for="phone">Phone Number</label>
+                    <span th:if="${#fields.hasErrors('phone')}" th:errors="*{buyer.phone}"
+                          class="alert alert-danger"></span>
+                    <input id="phone" name="phone" type="text" class="form-control"
+                           th:value="${buyer.phone}">
+                </div>
+                <!---->
+                <!-- <div class="form-group">
+                    <label for="username">Username</label>
+                    <span th:if="${#fields.hasErrors('user.appUser.userName')}" th:errors="*{user.appUser.userName}"
+                          class="alert alert-danger"></span>
+                    <input id="username" name="user.appUser.userName" type="text" class="form-control"
+                           aria-describedby="usernameAddressHelp" placeholder="e.g. name@domain.com"
+                           th:value="${salesperson.user.appUser.userName}">
+                </div>
+                 --><!---->
+              <!--   <div class="form-group">
+                    <label for="password">Password</label>
+                    <span th:if="${#fields.hasErrors('user.appUser.encrytedPassword')}" th:errors="*{user.appUser.encrytedPassword}"
+                          class="alert alert-danger"></span>
+                    <input id="password" name="user.appUser.encrytedPassword" type="password" class="form-control"
+                           th:value="${salesperson.user.appUser.encrytedPassword}">
+                </div>
+               -->  <!---->
+                <div style="float:right;">
+                    <a href="/inventory-manager/sale" class="btn btn-warning">Cancel</a>&nbsp;&nbsp;&nbsp;
+                    <button id="btnSubmit" type="submit" class="btn btn-primary">Check Out</button>
+                </div>
+            </fieldset>
+        </form>
+    </div>
+</th:block>
+
+
+</body>
+</html>

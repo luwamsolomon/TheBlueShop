@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" 
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" 
+	layout:decorate="~{common/usermasterlayout}">
+<head>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/homepage/index.css}" />
+    <title>Inventory Management System - Browse List of Merchants</title>
+</head>
+<body>
+    <th:block layout:fragment="content">
+        <div>
+            <span style="font-size: 1.5em">List of Merchant</span>
+            <span style="float:right;">
+                <a class="btn btn-outline-success btn-lg" href="/inventory-manager/merchants/new">Create New Merchant</a>
+            </span>
+        </div>
+        <p>&nbsp;</p>
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">First Name</th>
+                    <!--<th scope="col">Middle Name</th>-->
+                    <th scope="col">Last Name</th>
+                    <th scope="col">Email</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="merchant, iterStat : ${merchants}"
+                    th:onclick="@{document.location='/inventory-manager/merchants/edit/{sId}'(sId=${merchant.merchantId})}">
+                    <th scope="row" th:text="${iterStat.count}"></th>
+                    <td th:text="${merchant.user.firstName}"></td>
+                    <!--<td th:text="${student.middleName}"></td>-->
+                    <td th:text="${merchant.user.lastName}"></td>
+                    <td th:text="${merchant.user.email}"></td>
+                </tr>
+            </tbody>
+        </table>
+    </th:block>
+
+    <th:block layout:fragment="footer"></th:block>
+    
+</body>
+</html>

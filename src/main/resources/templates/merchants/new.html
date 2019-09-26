@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{common/masterlayout}">
+<head>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/homepage/index.css}" />
+    <title>Inventory Manager - New Merchant</title>
+</head>
+<body>
+<th:block layout:fragment="content">
+    <form id="stuRegForm" method="post" action="/inventory-manager/merchants/new" th:object="${merchant}">
+        <fieldset>
+            <legend>New Merchant Form</legend>
+            <input type="hidden" name="merchantId" th:value="${merchant.merchantId}" />
+            <input type="hidden" name="user.userType" th:value="MERCHANT" />
+
+            <div class="form-group">
+                <label for="firstName">First Name</label>
+                <p th:if="${#fields.hasErrors('user.firstName')}" th:errors="*{user.firstName}" class="alert alert-danger">Incorrect date</p>
+                <span th:if="${#fields.hasErrors('user.firstName')}" th:errors="*{user.firstName}"
+                      class="alert alert-danger"></span>
+                <input id="firstName" name="user.firstName" type="text" class="form-control" th:value="${merchant.user.firstName}">
+            </div>
+
+            <div class="form-group">
+                <label for="lastName">Last Name</label>
+                <span th:if="${#fields.hasErrors('user.lastName')}" th:errors="*{user.lastName}"
+                      class="alert alert-danger"></span>
+                <input id="lastName" name="user.lastName" type="text" class="form-control" th:value="${merchant.user.lastName}">
+            </div>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <span th:if="${#fields.hasErrors('user.email')}" th:errors="*{user.email}"
+                      class="alert alert-danger"></span>
+                <input id="email" name="user.email" type="email" class="form-control" aria-describedby="emailAddressHelp" placeholder="e.g. name@domain.com" pattern="[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*" title="Email must be in the format, name@domain.tld" th:value="${merchant.user.email}">
+                <small id="emailAddressHelp" class="form-text text-muted">Enter a valid email address; in the format as specified.</small>
+            </div>
+
+            <div class="form-group">
+                <label for="username">Username</label>
+                <span th:if="${#fields.hasErrors('user.appUser.userName')}" th:errors="*{user.appUser.userName}"
+                      class="alert alert-danger"></span>
+                <input id="username" name="user.appUser.userName" type="text" class="form-control"
+                       aria-describedby="usernameAddressHelp" placeholder="name to login with"
+                       th:value="${merchant.user.appUser.userName}">
+            </div>
+
+
+            <div class="form-group">
+                <label for="address">Address</label>
+                <span th:if="${#fields.hasErrors('address')}" th:errors="*{address}"
+                      class="alert alert-danger"></span>
+                <input id="address" name="address" type="text" class="form-control" aria-describedby="addressHelp" placeholder="address,city,state, zip code" th:value="${merchant.address}">
+            </div>
+
+
+            <div class="form-group">
+                <label for="mobile">Phone Number</label>
+                <span th:if="${#fields.hasErrors('user.mobile')}" th:errors="*{user.mobile}"
+                      class="alert alert-danger"></span>
+                <input id="mobile" name="user.mobile" type="text" class="form-control" th:value="${merchant.user.mobile}">
+            </div>
+
+            <div class="form-group">
+                <label for="password">Password</label>
+                <span th:if="${#fields.hasErrors('user.appUser.encrytedPassword')}" th:errors="*{user.appUser.encrytedPassword}"
+                      class="alert alert-danger"></span>
+                <input id="password" name="user.appUser.encrytedPassword" type="password" class="form-control"
+                       th:value="${merchant.user.appUser.encrytedPassword}">
+            </div>
+
+            <div class="form-group">
+                <label for="merchantName">Business Name</label>
+                <span th:if="${#fields.hasErrors('merchantName')}" th:errors="*{merchantName}"
+                      class="alert alert-danger"></span>
+                <input id="merchantName" name="merchantName" type="text" class="form-control" th:value="${merchant.merchantName}">
+            </div>
+
+            <div style="float:right;">
+                <a href="/inventory-manager/login" class="btn btn-warning">Cancel</a>&nbsp;&nbsp;&nbsp;
+                <button id="btnSubmit" type="submit" class="btn btn-primary">Sign Up</button>
+            </div>
+        </fieldset>
+    </form>
+</th:block>
+
+<th:block layout:fragment="footer"></th:block>
+
+</body>
+</html>
